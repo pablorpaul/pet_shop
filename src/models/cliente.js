@@ -1,3 +1,4 @@
+const Cachorro = require('../models/cachorro')
 const { DataTypes } = require('sequelize')
 const conexao = require('../database.js')
 
@@ -18,5 +19,8 @@ const Cliente = conexao.define('clientes', {
     createdAt: false,
     updatedAt: false
 })
+
+Cachorro.belongsTo(Cliente, {foreignKey: 'clienteId'})
+Cliente.hasMany(Cachorro, {foreignKey: 'clienteId'})
 
 module.exports = Cliente

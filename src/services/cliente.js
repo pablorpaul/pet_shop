@@ -30,17 +30,17 @@ class ServicoCliente{
         return repositorio.Add(cliente, transaction);
     }
 
-    async Update(id, cliente) {
+    async Update(id, cliente, transaction) {
         if(!id) {
             throw new Error('Não foi enviada o identificador do cliente para alterar');
         } 
         this.VerficarCliente(cliente)
 
-        return repositorio.Update(id, cliente);
+        return repositorio.Update(id, cliente, transaction);
     }
 
-    async Delete(id) {
-        return repositorio.Delete(id);
+    async Delete(id, transaction) {
+        return repositorio.Delete(id, transaction);
     }
 
 } 

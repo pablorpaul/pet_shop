@@ -9,7 +9,7 @@ class ControllerCachorro {
             console.log(req.params.id)
             const result = await servico.PegarUm(req.params.id)
             res.status(200).json({
-                cliente: result
+                cachorro: result
             })
         } catch (error) {
             console.log(error)
@@ -21,7 +21,7 @@ class ControllerCachorro {
         try {
             const result = await servico.PegarTodos()
             res.status(200).json({
-                clientes: result
+                cachorros: result
             })
         } catch (error) {
             console.log(error)
@@ -33,7 +33,7 @@ class ControllerCachorro {
         try {
             const result = await servico.Add(req.body.cachorro)
             res.status(201).json({
-                cliente: result
+                cachorro: result
             })
         } catch (error) {
             console.log(error)
@@ -45,7 +45,7 @@ class ControllerCachorro {
         try {
             const result = await servico.Update(req.params.id, req.body.cachorro)
             res.status(200).json({
-                cliente: result
+                cachorro: result
             })
         } catch (error) {
             console.log(error)
@@ -56,7 +56,7 @@ class ControllerCachorro {
     async Delete(req, res){
         try {
             await servico.Delete(req.params.id)
-            res.status(204)
+            res.status(204).send()
         } catch (error) {
             console.log(error)
             res.status(500).json({ message: error })

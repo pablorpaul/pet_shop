@@ -17,17 +17,25 @@ describe('Testes clientes', () => {
       const result = await servico.PegarUm(1, this.save)
 
       expect(result.id).toBe(1);
-      expect(result.nome).toBe('joao');
-      expect(result.telefone).toBe('teste@teste.com');
+      expect(result.nome).toBe('João da Silva');
+      expect(result.telefone).toBe('9999-9999');
    })
 
    it('Should create a person', async () => {
       const result = await servico.Add({
-         nome: 'joao',
-         telefone: 'teste2@teste.com'
+         nome: 'Jorge',
+         telefone: '9999-9932'
       }, this.save)
 
-      expect(result.nome).toBe('joao');
-      expect(result.telefone).toBe('teste2@teste.com');
+      expect(result.nome).toBe('Jorge');
+      expect(result.telefone).toBe('9999-9932');
+   })
+
+   it('Should delete a person', async () => {
+      const result = await servico.Delete({
+         id: 5
+      }, this.save)
+
+      expect(result).toBe(0)
    })
 })

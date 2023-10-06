@@ -5,6 +5,7 @@ class RepositorieCliente {
     async PegarUm(id, transaction) {
         return Cliente.findOne({
             where: { id },
+            include: ['cachorros'],
             transaction
         });
     }
@@ -25,16 +26,17 @@ class RepositorieCliente {
                 id
             }
         })
-
-        console.log(result)
-
         return result
     }
 
     async Delete(id) {
-        return Cliente.destroy({
-            where: { id }
+        const result = await Cliente.destroy({
+            where: { 
+                id 
+            }
         });
+
+        return result
     }
 
 }

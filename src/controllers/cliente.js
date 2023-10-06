@@ -56,7 +56,7 @@ class ControllerCliente {
     async Delete(req, res){
         try {
             await servico.Delete(req.params.id)
-            res.status(204)
+            res.status(204).send()
         } catch (error) {
             console.log(error)
             res.status(500).json({ message: error })

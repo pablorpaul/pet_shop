@@ -1,3 +1,4 @@
+const Cliente = require('../models/cliente')
 const { DataTypes } = require('sequelize')
 const conexao = require('../database.js')
 
@@ -13,6 +14,14 @@ const Cachorro = conexao.define('cachorros', {
     },
     raca: {
         type: DataTypes.STRING,
+    },
+    clienteId: {
+        field: 'cliente_id',
+        type: DataTypes.INTEGER,
+        references: {
+            model: Cliente,
+            key: 'id'
+        }
     }
 }, {
     createdAt: false,

@@ -34,7 +34,7 @@ class ServicoCachorro{
         if(!id) {
             throw new Error('Não foi enviada o identificador do cachorro para alterar');
         } 
-        this.VerficarCliente(cachorro)
+        this.VerficarCachorro(cachorro)
 
         return repositorio.Update(id, cachorro);
     }
