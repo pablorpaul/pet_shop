@@ -1,15 +1,15 @@
-const ServicoCachorro = require("../services/cachorro")
+const ServicoAtendimento = require("../services/atendimento")
 
-const servico = new ServicoCachorro()
+const servico = new ServicoAtendimento()
 
-class ControllerCachorro {
+class ControllerAtendimento {
 
     async PegarUm(req, res){
         try {
             console.log(req.params.id)
             const result = await servico.PegarUm(req.params.id)
             res.status(200).json({
-                cachorro: result
+                atendimento: result
             })
         } catch (error) {
             console.log(error)
@@ -34,7 +34,7 @@ class ControllerCachorro {
         try {
             const result = await servico.PegarTodos()
             res.status(200).json({
-                cachorros: result
+                atendimentos: result
             })
         } catch (error) {
             console.log(error)
@@ -44,9 +44,9 @@ class ControllerCachorro {
 
     async Add(req, res){
         try {
-            const result = await servico.Add(req.body.cachorro)
+            const result = await servico.Add(req.body.atendimento)
             res.status(201).json({
-                cachorro: result
+                atendimento: result
             })
         } catch (error) {
             console.log(error)
@@ -56,9 +56,9 @@ class ControllerCachorro {
 
     async Update(req, res){
         try {
-            const result = await servico.Update(req.params.id, req.body.cachorro)
+            const result = await servico.Update(req.params.id, req.body.atendimento)
             res.status(200).json({
-                cachorro: result
+                atendimento: result
             })
         } catch (error) {
             console.log(error)
@@ -78,4 +78,4 @@ class ControllerCachorro {
 
 }
 
-module.exports = ControllerCachorro
+module.exports = ControllerAtendimento

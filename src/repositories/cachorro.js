@@ -5,6 +5,7 @@ class RepositorieCachorro {
     async PegarUm(id, transaction) {
         return Cachorro.findOne({
             where: { id },
+            include: ['atendimentos'],
             transaction
         });
     }
