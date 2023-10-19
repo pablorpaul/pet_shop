@@ -1,6 +1,8 @@
 const Cliente = require('../models/cliente.js')
+const bcrypt = require('bcrypt')
 
 class RepositorieCliente {
+
 
     async PegarUm(id, transaction) {
         return Cliente.findOne({
@@ -9,13 +11,23 @@ class RepositorieCliente {
             transaction
         });
     }
+
+    async PegarUmPorEmail(email) {
+        return Cliente.findOne({
+            where: { email }
+        });
+    }
     
     async PegarTodos() {
         return Cliente.findAll();
     }
 
     async Add(cliente, transaction) {
-        const result = await Cliente.create(cliente, { transaction })
+        const hashsenha = await bcrypt.hash(cliente.senha, 10)
+
+        const result = await Cliente.create(
+            { ...cliente, senha: hashsenha },
+            { transaction })
 
         return result
     }

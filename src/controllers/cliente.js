@@ -1,8 +1,34 @@
 const ServicoCliente = require("../services/cliente")
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const config = require("../config")
 
 const servico = new ServicoCliente()
 
 class ControllerCliente {
+
+    async Login(req, res){
+        const { email, senha} = req.body
+
+        const {dataValues: cliente} = await servico.PegarUmPorEmail(email)
+
+        if(!cliente){
+            res.status(401).json({ message: "Email ou senha inválidos"})
+        }
+
+        if(!(await bcrypt.compare(senha, cliente.senha))){
+            res.status(401).json({ message: "Email ou senha inválidos"})
+        }
+
+        const token = jwt.sign(
+            { id: cliente.id, nome: cliente.nome, email: cliente.email, telefone: cliente.telefone}
+            config
+        )
+
+        res.json({
+            token: token
+        })
+    }
 
     async PegarUm(req, res){
         try {

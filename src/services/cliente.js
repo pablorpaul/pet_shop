@@ -16,6 +16,18 @@ class ServicoCliente{
         return true
     }
 
+    Login(email, senha) {
+        if(!email || !senha){
+            throw new Error('Envie todas as informações')
+        }
+
+        return repositorio.Login(email, senha)
+    }
+
+    async PegarUmPorEmail(email) {
+        return repositorio.PegarUmPorEmail(email)
+    }
+
     async PegarUm(id, transaction) {
         return repositorio.PegarUm(id, transaction);
     }

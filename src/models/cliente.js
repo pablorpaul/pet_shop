@@ -12,6 +12,14 @@ const Cliente = conexao.define('clientes', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    senha: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     telefone: {
         type: DataTypes.STRING,
     }
