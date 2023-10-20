@@ -5,7 +5,6 @@ const authMiddleware = require('../middleware/auth')
 const controller = new ControllerCliente()
 const router = express.Router()
 
-router.post('/api/login', controller.Login)
 router.get('/api/cliente/:id', authMiddleware, controller.PegarUm)
 router.get('/api/cliente/', authMiddleware, controller.PegarTodos)
 router.post('/api/cliente', authMiddleware, controller.Add)

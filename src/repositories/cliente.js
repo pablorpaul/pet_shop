@@ -1,5 +1,4 @@
 const Cliente = require('../models/cliente.js')
-const bcrypt = require('bcrypt')
 
 class RepositorieCliente {
 
@@ -23,11 +22,7 @@ class RepositorieCliente {
     }
 
     async Add(cliente, transaction) {
-        const hashsenha = await bcrypt.hash(cliente.senha, 10)
-
-        const result = await Cliente.create(
-            { ...cliente, senha: hashsenha },
-            { transaction })
+        const result = await Cliente.create(cliente, { transaction })
 
         return result
     }

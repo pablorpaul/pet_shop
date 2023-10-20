@@ -1,4 +1,5 @@
 const Cachorro = require('../models/cachorro')
+const Usuario = require('../models/usuario')
 const { DataTypes } = require('sequelize')
 const conexao = require('../database.js')
 
@@ -12,16 +13,16 @@ const Cliente = conexao.define('clientes', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    senha: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
     telefone: {
         type: DataTypes.STRING,
+    },
+    usuarioId: {
+        field: 'usuario_id',
+        type: DataTypes.INTEGER,
+        references: {
+            model: Usuario,
+            key: 'id'
+        }
     }
 }, {
     createdAt: false,
@@ -30,5 +31,6 @@ const Cliente = conexao.define('clientes', {
 
 Cachorro.belongsTo(Cliente, {foreignKey: 'clienteId'})
 Cliente.hasMany(Cachorro, {foreignKey: 'clienteId'})
+
 
 module.exports = Cliente
