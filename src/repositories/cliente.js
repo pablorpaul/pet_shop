@@ -1,4 +1,6 @@
 const Cliente = require('../models/cliente.js')
+const Usuario = require('../models/atendente.js')
+const bcrypt = require('bcrypt')
 
 class RepositorieCliente {
 
@@ -21,14 +23,14 @@ class RepositorieCliente {
         return Cliente.findAll();
     }
 
-    async Add(cliente, transaction) {
-        const result = await Cliente.create(cliente, { transaction })
+    async Add(cliente, userid, transaction) {
+        const result = await Cliente.create({...cliente, usuarioId: userid}, { transaction })
 
         return result
     }
 
-    async Update(id, cliente) {
-        const result = await Cliente.update(cliente, {
+    async Update(id, cliente, userid) {
+        const result = await Cliente.update({...cliente, usuarioId: userid}, {
             where: {
                 id
             }
@@ -44,6 +46,24 @@ class RepositorieCliente {
         });
 
         return result
+    }
+
+    async AdicionarUsuario(usuario){
+        const hashsenha = await bcrypt.hash(usuario.senha, 10)
+
+        return Usuario.create({ ...usuario, senha: hashsenha})
+    }
+
+    async AtualizarUsuario(usuario, id){
+        console.log(id)
+        const hashsenha = await bcrypt.hash(usuario.senha, 10)
+
+        return Usuario.update({ ...usuario, senha: hashsenha}, { where: { id } })
+    }
+
+    async DeletarUsuario(id){
+        console.log(id)
+        return Usuario.destroy({ where: { id } })
     }
 
 }

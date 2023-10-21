@@ -1,6 +1,6 @@
 const Cachorro = require('../models/cachorro')
-const { DataTypes } = require('sequelize')
 const conexao = require('../database.js')
+const { DataTypes } = require('sequelize')
 
 const Atendimento = conexao.define('atendimentos', {
     id: {

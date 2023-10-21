@@ -1,4 +1,4 @@
-const Cliente = require('../models/cliente')
+const Cliente = require('./cliente')
 const { DataTypes } = require('sequelize')
 const conexao = require('../database.js')
 
@@ -16,13 +16,15 @@ const Usuario = conexao.define('usuarios', {
     senha: {
         type: DataTypes.STRING,
         allowNull: false
-    }
+    },
+    permissao: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+
 }, {
     createdAt: false,
     updatedAt: false
 })
-
-Cliente.belongsTo(Usuario, {foreignKey: 'usuarioId'})
-Usuario.hasOne(Cliente, {foreignKey: 'usuarioId'})
 
 module.exports = Usuario

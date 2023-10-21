@@ -2,9 +2,9 @@ module.exports = {
     development: {
         username: 'root',
         password:  '',
-        database: 'pet_shop',
+        database: 'petshop',
         host: 'localhost',
         dialect: 'mysql'
     },
-    secret: 'Minhachavesecreta'
+    secret: 'minhachavesecreta'
 }
